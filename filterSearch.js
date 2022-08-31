@@ -1,14 +1,16 @@
-const handleFilter = (e) => {
+const handleFilter = (e, users, setFilteredData) => {
   const keyword = e.target.value;
 
   if (keyword !== "") {
-    const results = products.filter((product) => {
-      return product.name.toLowerCase().includes(keyword.toLowerCase());
-      // Use the toLowerCase() method to make it case-insensitive
+    const filteredResult = users?.filter((user) => {
+      return (
+        product?.name.toLowerCase()?.includes(keyword?.toLowerCase()) ||
+        user?.email.toLowerCase()?.includes(keyword?.toLowerCase())
+      );
     });
-    setFilteredData(results);
+    setFilteredData(filteredResult);
   } else {
-    setFilteredData(products);
+    setFilteredData(users);
   }
 };
 

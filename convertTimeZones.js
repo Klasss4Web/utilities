@@ -1,8 +1,8 @@
-const changeTimezone = (date, ianatz) => {
+const changeTimezone = (date, timeZoneString) => {
   // suppose the date is 12:00 UTC
-  var invdate = new Date(
+  const invdate = new Date(
     date.toLocaleString("en-US", {
-      timeZone: ianatz,
+      timeZone: timeZoneString,
     })
   );
 
@@ -15,7 +15,7 @@ const changeTimezone = (date, ianatz) => {
 }
 
 // E.g.
-var here = new Date();
+var here = new Date("2012/04/20 10:10:30");
 var there = changeTimezone(here, "America/Toronto");
 
 console.log(`Here: ${here.toString()}\nToronto: ${there.toString()}`);
@@ -35,16 +35,16 @@ function convertTZ(date, tzString) {
 convertTZ("2012/04/20 10:10:30 +0000", "Asia/Jakarta"); // Tue Apr 20 2012 17:10:30 GMT+0700 (Western Indonesia Time)
 
 // Resulting value is regular Date() object
-const convertedDate = convertTZ("2012/04/20 10:10:30 +0000", "Asia/Jakarta");
+const convertedDate = convertTZ("2012/04/20 10:10:30", "Asia/Jakarta");
 convertedDate.getHours(); // 17
 
 // Bonus: You can also put Date object to first arg
 const date = new Date();
-console.log(convertTZ(date, "Asia/Jakarta")); // current date-time in jakarta.
+console.log(convertTZ("2012/04/20 10:10:30 +0000", "Asia/Jakarta"), "locale"); // current date-time in jakarta.
 
 const lagos = new Date().toLocaleString("en-US", { timeZone: "Africa/Lagos" });
 const newYork = new Date().toLocaleString("en-US", {
   timeZone: "America/New_York",
 });
 
-console.log(times, "local");
+console.log(lagos, "local");
